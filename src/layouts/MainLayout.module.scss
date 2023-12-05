@@ -1,0 +1,18 @@
+.header {
+    .left {
+        float: left;
+    }
+    .right {
+        float: right;
+    }
+}
+
+.main {
+    min-height: calc(100vh - 64px - 65px); //减去header和footer的高度
+}
+
+.footer {
+    text-align: center;
+    background-color: #f7f7f7;
+    border-top: 1px solid #e8e8e8;
+}

@@ -1,0 +1,5 @@
+/* dnd-kit 拖拽排序 */
+/* 删除外框 */
+div[role="button"] {
+  outline: 0; 
+}
