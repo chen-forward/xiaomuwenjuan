@@ -1,8 +1,9 @@
 import React, { FC } from "react"
 import { useNavigate } from "react-router-dom"
-import { Button, Typography } from "antd"
-import { MANAGE_INDEX_PATHNAME } from "../router"
+import { Button, Typography, message } from "antd"
+import { LOGIN_PATHNAME, MANAGE_INDEX_PATHNAME } from "../router"
 import styles from "./Home.module.scss"
+import { getToken } from "../utils/user-token"
 
 // import axios from "axios"
 
@@ -41,6 +42,10 @@ const Home: FC = () => {
           <Button
             type="primary"
             onClick={() => {
+              if (!getToken()) {
+                nav(LOGIN_PATHNAME)
+                return
+              }
               nav(MANAGE_INDEX_PATHNAME)
             }}
           >

@@ -5,6 +5,7 @@ import { FormOutlined } from "@ant-design/icons"
 import useGetUserInfo from "../hooks/useGetUserInfo"
 import { HOME_PATHNAME, MANAGE_INDEX_PATHNAME } from "../router"
 import styles from "./Logo.module.scss"
+import { getToken } from "../utils/user-token"
 
 const { Title } = Typography //排版文本
 
@@ -13,6 +14,8 @@ const Logo: FC = () => {
   const { username } = useGetUserInfo()
 
   const [pathname, setPathname] = useState(HOME_PATHNAME)
+
+  const token = getToken()
 
   useEffect(() => {
     // 已经登录 进入列表页面
@@ -23,7 +26,7 @@ const Logo: FC = () => {
 
   return (
     <div className={styles.container}>
-      <Link to={pathname}>
+      <Link to={token ? pathname : HOME_PATHNAME}>
         <Space>
           <Title>
             <FormOutlined />

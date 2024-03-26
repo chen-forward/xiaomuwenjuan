@@ -4,7 +4,9 @@ import { getToken } from "../utils/user-token"
 
 // 传入配置创造一个实例
 const instance = axios.create({
+  baseURL: "http://localhost:3005/",
   timeout: 10 * 1000,
+  headers: {},
 })
 
 // request请求拦截：每次请求都带上token

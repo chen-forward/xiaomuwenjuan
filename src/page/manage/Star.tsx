@@ -1,5 +1,5 @@
 // 标星列表
-import React, { FC } from "react"
+import React, { FC, useEffect } from "react"
 import { useTitle } from "ahooks"
 import { Typography, Empty, Spin } from "antd"
 import useLoadQuestionListData from "../../hooks/useLoadQuestionListData"
@@ -14,8 +14,8 @@ const Star: FC = () => {
   useTitle("小慕问卷 - 我的问卷")
 
   // 获取问卷标星列表数据
-  const { data = {}, loading } = useLoadQuestionListData({ isStar: true })
-  const { list = [], total = 0 } = data
+  const { data = {}, loading, refresh } = useLoadQuestionListData({ isStar: true })
+  const { list = [], count = 0 } = data
 
   return (
     <>
@@ -38,11 +38,11 @@ const Star: FC = () => {
           list.length > 0 &&
           list.map((q: any) => {
             const { _id } = q
-            return <QuestionCard key={_id} {...q} />
+            return <QuestionCard refresh={refresh} key={_id} {...q} />
           })}
       </div>
       <div className={styles.footer}>
-        <ListPage total={total} />
+        <ListPage total={count} />
       </div>
     </>
   )

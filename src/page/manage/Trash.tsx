@@ -35,7 +35,7 @@ const Trash: FC = () => {
       debounceWait: 500, //防抖
       onSuccess() {
         message.success("恢复成功")
-        refresh() //手动刷新列表
+        refresh() // 手动刷新列表
         setSelectedIds([])
       },
     }

@@ -105,7 +105,7 @@ const PublishButton: FC = () => {
       await updateQuestionService(id, {
         ...pageInfo,
         componentList,
-        isPublish: true, //标志问卷已经被发布
+        isPublished: true, // 标志问卷已经被发布
       })
     },
     {

@@ -18,7 +18,7 @@ const ChartStat: FC<PropsType> = (props: PropsType) => {
 
   const [stat, setStat] = useState([])
   const { run } = useRequest(
-    async (questionId, componentId) => await getComponentStatService(questionId, componentId),
+    async (questionId, componentFeId) => await getComponentStatService(questionId, componentFeId),
     {
       manual: true,
       onSuccess(res) {

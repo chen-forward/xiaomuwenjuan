@@ -18,13 +18,14 @@ function useNavPage(waitingUserData: boolean) {
       }
       return
     }
+
     // 未登录
-    if (noNeedUserInfo(pathname)) {
-      return
-    } else {
-      nav(LOGIN_PATHNAME)
-    }
-  }, [waitingUserData, username, pathname]) //
+    // if (noNeedUserInfo(pathname)) {
+    //   return
+    // } else {
+    //   nav(LOGIN_PATHNAME)
+    // }
+  }, [waitingUserData, username, pathname])
 }
 
 export default useNavPage

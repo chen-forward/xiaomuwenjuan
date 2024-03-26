@@ -23,7 +23,7 @@ const Register: FC = () => {
       //请求成功后执行的回调函数
       onSuccess() {
         message.success("注册成功")
-        nav(LOGIN_PATHNAME) //跳转登录页
+        nav(LOGIN_PATHNAME) // 跳转登录页
       },
     }
   )

@@ -39,7 +39,7 @@ export async function updateQuestionService(
   opt: { [key: string]: any }
 ): Promise<ResDataType> {
   const url = `/api/question/${id}`
-  const data = (await axios.post(url, opt)) as ResDataType
+  const data = (await axios.patch(url, opt)) as ResDataType
   return data
 }
 

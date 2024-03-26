@@ -11,26 +11,27 @@ import {
   ExclamationCircleOutlined,
 } from "@ant-design/icons"
 import { useRequest } from "ahooks"
+import dayjs from "dayjs"
 import { updateQuestionService, duplicateQuestionService } from "../services/question"
 import styles from "./QuestionCard.module.scss"
 
 const { confirm } = Modal //解构出弹窗组件
 
 type PropsType = {
-  _id: string
+  _id: string // 服务端 mongodb ，自动，_id 不重复
   title: string
   isPublished: boolean
   isStar: boolean
   answerCount: number
   createdAt: string
+  refresh?: () => void
 }
 
 const QuestionCard: FC<PropsType> = (props: PropsType) => {
-  const { _id, title, createdAt, isPublished, answerCount, isStar } = props
-
   const nav = useNavigate()
+  const { _id, title, createdAt, isPublished, answerCount = 0, isStar, refresh } = props
 
-  // 修改标星
+  // 修改 标星
   const [isStarState, setIsStarState] = useState(isStar)
   const { run: changeStar, loading: changeStarLoading } = useRequest(
     async () => {
@@ -40,6 +41,7 @@ const QuestionCard: FC<PropsType> = (props: PropsType) => {
       manual: true,
       onSuccess() {
         setIsStarState(!isStarState) //更新state
+        refresh?.()
         message.success("已更新") //提示信息
       },
     }
@@ -55,7 +57,7 @@ const QuestionCard: FC<PropsType> = (props: PropsType) => {
       manual: true,
       onSuccess(result) {
         message.success("复制成功") //提示信息
-        nav(`/question/edit/${result.id}`) //跳转到问卷编辑页
+        nav(`/question/edit/${result.id || result._id}`) //跳转到问卷编辑页
       },
     }
   )
@@ -100,8 +102,8 @@ const QuestionCard: FC<PropsType> = (props: PropsType) => {
           <div className={styles.right}>
             <Space>
               {isPublished ? <Tag color={"processing"}>已发布</Tag> : <Tag>未发布</Tag>}
-              <span>答卷:{answerCount}</span>
-              <span>{createdAt}</span>
+              <span>答卷: {answerCount}</span>
+              <span>{dayjs(createdAt).format("YYYY-MM-DD HH:mm")}</span>
             </Space>
           </div>
         </div>

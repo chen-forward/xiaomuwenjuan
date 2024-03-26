@@ -33,11 +33,11 @@ function getUserFromStorage() {
 
 const Login: FC = () => {
   const nav = useNavigate()
-  const [form] = Form.useForm() //Form组件的第三方hook
+  const [form] = Form.useForm() // Form组件的第三方hook
 
   useEffect(() => {
     const { username, password } = getUserFromStorage()
-    form.setFieldsValue({ username, password }) //将密码设置到表单
+    form.setFieldsValue({ username, password }) // 将密码设置到表单
   }, [])
 
   // 登录网络请求
